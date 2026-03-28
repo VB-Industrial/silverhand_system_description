@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="silverhand_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="PI" value="3.141592653589793"/>
+
+  <xacro:include filename="$(find silverhand_rover_model)/urdf/silverhand_rover.urdf.xacro"/>
+  <xacro:include filename="$(find silverhand_arm_description)/urdf/silverhand_macro.urdf.xacro"/>
+
+  <!-- Рука установлена на нижней передней панели.
+       Поза подстроена относительно исходной посадки по текущим уточнениям. -->
+  <link name="arm_mount_link"/>
+
+  <joint name="base_to_arm_mount_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="arm_mount_link"/>
+    <origin xyz="0.28 0.10 -0.076" rpy="0 0 ${-PI}"/>
+  </joint>
+
+  <xacro:silverhand_arm
+    prefix="arm_"
+    parent="arm_mount_link"
+    xyz="0 0 0"
+    rpy="0 0 0"/>
+</robot>
