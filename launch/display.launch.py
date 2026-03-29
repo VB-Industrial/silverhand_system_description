@@ -1,4 +1,5 @@
 import subprocess
+import tempfile
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
@@ -24,6 +25,15 @@ def _launch_setup(context, *args, **kwargs):
         [xacro_executable, model_path],
         text=True,
     )
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        prefix="silverhand_system_",
+        suffix=".urdf",
+        delete=False,
+    ) as urdf_file:
+        urdf_file.write(urdf_content)
+        urdf_path = urdf_file.name
+
     robot_description = {"robot_description": urdf_content}
     nodes = []
 
@@ -41,6 +51,7 @@ def _launch_setup(context, *args, **kwargs):
                 package="joint_state_publisher_gui",
                 executable="joint_state_publisher_gui",
                 name="joint_state_publisher_gui",
+                arguments=[urdf_path],
                 parameters=joint_state_parameters,
                 output="screen",
             )
@@ -51,6 +62,7 @@ def _launch_setup(context, *args, **kwargs):
                 package="joint_state_publisher",
                 executable="joint_state_publisher",
                 name="joint_state_publisher",
+                arguments=[urdf_path],
                 parameters=joint_state_parameters,
                 output="screen",
             )
