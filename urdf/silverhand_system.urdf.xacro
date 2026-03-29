@@ -3,7 +3,7 @@
   <xacro:property name="PI" value="3.141592653589793"/>
 
   <xacro:include filename="$(find silverhand_rover_model)/urdf/silverhand_rover.urdf.xacro"/>
-  <xacro:include filename="$(find silverhand_arm_description)/urdf/silverhand_macro.urdf.xacro"/>
+  <xacro:include filename="$(find silverhand_arm_model)/urdf/silverhand_macro.urdf.xacro"/>
 
   <!-- Рука установлена на нижней передней панели.
        Поза подстроена относительно исходной посадки по текущим уточнениям. -->
