@@ -7,13 +7,14 @@
   <xacro:include filename="$(find silverhand_hand_model)/urdf/silverhand_hand_macro.urdf.xacro"/>
 
   <!-- Рука установлена на нижней передней панели.
-       Поза подстроена относительно исходной посадки по текущим уточнениям. -->
+       По Y центрирована на площадке, по X подведена так, чтобы задняя
+       часть первого линка подходила к вертикальной стенке ровера. -->
   <link name="arm_mount_link"/>
 
   <joint name="base_to_arm_mount_joint" type="fixed">
     <parent link="base_link"/>
     <child link="arm_mount_link"/>
-    <origin xyz="0.28 0.10 -0.076" rpy="0 0 ${-PI}"/>
+    <origin xyz="0.324 0.0 -0.076" rpy="0 0 ${-3*PI/2}"/>
   </joint>
 
   <xacro:silverhand_arm
