@@ -14,7 +14,7 @@
   <joint name="base_to_arm_mount_joint" type="fixed">
     <parent link="base_link"/>
     <child link="arm_mount_link"/>
-    <origin xyz="0.324 0.0 -0.076" rpy="0 0 ${-3*PI/2}"/>
+    <origin xyz="0.324 0.0 -0.076" rpy="0 0 0"/>
   </joint>
 
   <xacro:silverhand_arm
