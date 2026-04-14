@@ -1,2 +1,2 @@
 # silverhand_system_description
-arm + rover combo
+Комбинированное описание руки и rover.
